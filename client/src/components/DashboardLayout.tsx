@@ -1,7 +1,7 @@
 import { BrandMark } from "@/components/BrandMark";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useAlumni } from "@/contexts/AlumniContext";
 import { cn } from "@/lib/utils";
 import {
@@ -105,7 +105,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left" className="w-[286px] border-0 p-0"><SidebarContent onNavigate={() => setOpen(false)} /></SheetContent>
+              <SheetContent side="left" className="w-[286px] border-0 p-0">
+                <SheetTitle className="sr-only">Alumni dashboard navigation</SheetTitle>
+                <SidebarContent onNavigate={() => setOpen(false)} />
+              </SheetContent>
             </Sheet>
             <div className="lg:hidden"><BrandMark compact /></div>
             <div className="hidden lg:block">
