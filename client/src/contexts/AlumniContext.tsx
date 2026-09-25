@@ -8,6 +8,12 @@ export type AlumniProfile = {
   age: string;
   location: string;
   linkedIn: string;
+  instagram: string;
+  twitter: string;
+  otherSocial: string;
+  gender: string;
+  raceEthnicity: string;
+  lgbtqia: string;
   bio: string;
   companyName: string;
   companyUrl: string;
@@ -33,6 +39,12 @@ const defaultProfile: AlumniProfile = {
   age: "34",
   location: "Cincinnati, OH",
   linkedIn: "linkedin.com/in/alexmorgan",
+  instagram: "instagram.com/alexbuilds",
+  twitter: "x.com/alexbuilds",
+  otherSocial: "",
+  gender: "Prefer not to say",
+  raceEthnicity: "Prefer not to say",
+  lgbtqia: "Prefer not to say",
   bio: "Building practical tools that help neighborhood businesses grow with confidence.",
   companyName: "Northstar Works",
   companyUrl: "northstarworks.co",
