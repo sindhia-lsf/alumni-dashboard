@@ -1,0 +1,108 @@
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
+
+export type AlumniProfile = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  age: string;
+  location: string;
+  linkedIn: string;
+  bio: string;
+  companyName: string;
+  companyUrl: string;
+  title: string;
+  industry: string;
+  stage: string;
+  foundedYear: string;
+  employeeCount: string;
+  annualRevenue: string;
+  fundingRaised: string;
+  fundraisingStatus: string;
+  cohortCity: string;
+  cohortYear: string;
+  goals: string;
+  supportAreas: string;
+};
+
+const defaultProfile: AlumniProfile = {
+  firstName: "Alex",
+  lastName: "Morgan",
+  email: "alex@northstarworks.co",
+  phone: "(513) 555-0198",
+  age: "34",
+  location: "Cincinnati, OH",
+  linkedIn: "linkedin.com/in/alexmorgan",
+  bio: "Building practical tools that help neighborhood businesses grow with confidence.",
+  companyName: "Northstar Works",
+  companyUrl: "northstarworks.co",
+  title: "Founder & CEO",
+  industry: "Technology",
+  stage: "Early revenue",
+  foundedYear: "2022",
+  employeeCount: "6–10",
+  annualRevenue: "$250K–$500K",
+  fundingRaised: "$150K",
+  fundraisingStatus: "Preparing to raise",
+  cohortCity: "Cincinnati",
+  cohortYear: "2024",
+  goals: "Grow recurring revenue and prepare for a seed round.",
+  supportAreas: "Fundraising, customer acquisition, hiring",
+};
+
+type AlumniContextValue = {
+  profile: AlumniProfile;
+  signedIn: boolean;
+  login: () => void;
+  logout: () => void;
+  updateProfile: (updates: Partial<AlumniProfile>) => void;
+};
+
+const AlumniContext = createContext<AlumniContextValue | null>(null);
+
+function getSavedProfile() {
+  if (typeof window === "undefined") return defaultProfile;
+  try {
+    const saved = window.localStorage.getItem("lightship-alumni-profile");
+    return saved ? { ...defaultProfile, ...JSON.parse(saved) } : defaultProfile;
+  } catch {
+    return defaultProfile;
+  }
+}
+
+export function AlumniProvider({ children }: { children: React.ReactNode }) {
+  const [profile, setProfile] = useState<AlumniProfile>(getSavedProfile);
+  const [signedIn, setSignedIn] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.localStorage.getItem("lightship-alumni-session") === "active";
+  });
+
+  useEffect(() => {
+    window.localStorage.setItem("lightship-alumni-profile", JSON.stringify(profile));
+  }, [profile]);
+
+  const value = useMemo<AlumniContextValue>(
+    () => ({
+      profile,
+      signedIn,
+      login: () => {
+        setSignedIn(true);
+        window.localStorage.setItem("lightship-alumni-session", "active");
+      },
+      logout: () => {
+        setSignedIn(false);
+        window.localStorage.removeItem("lightship-alumni-session");
+      },
+      updateProfile: updates => setProfile(current => ({ ...current, ...updates })),
+    }),
+    [profile, signedIn],
+  );
+
+  return <AlumniContext.Provider value={value}>{children}</AlumniContext.Provider>;
+}
+
+export function useAlumni() {
+  const context = useContext(AlumniContext);
+  if (!context) throw new Error("useAlumni must be used within AlumniProvider");
+  return context;
+}
