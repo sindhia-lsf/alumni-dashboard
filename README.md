@@ -4,7 +4,7 @@ A responsive alumni community dashboard for Lightship Foundation Bootcamp gradua
 
 ## Included experiences
 
-- Split-screen member login with email/password and Google entry options
+- Shared split-screen login with member and Lightship admin access modes
 - Three-step first-time alumni onboarding
 - Personalized home dashboard with announcements, company snapshot, resources, and events
 - Editable personal, company, and business metrics profile sections
@@ -12,6 +12,14 @@ A responsive alumni community dashboard for Lightship Foundation Bootcamp gradua
 - Searchable Luminaries founder directory with LinkedIn discovery
 - Office-hours, introduction, and general support request flow
 - Responsive mobile navigation and persistent local demo data
+- Lightship team overview with onboarding, request, and publishing metrics
+- Attributed announcement and resource creation, scheduling, and archiving
+- Meeting-request triage with viewed and scheduled states
+- Sortable and filterable cohort reporting with complete founder records
+
+## Administration workspace
+
+Choose **Admin access** on the login page to enter the Lightship team workspace. The prototype includes prefilled staff credentials for demonstration. Admin routes cover the overview, meeting requests, announcement publishing, resource publishing, the cohort table, and individual founder records. Content and request actions are tagged with the acting administrator’s name and timestamp.
 
 ## Design direction
 
@@ -36,4 +44,4 @@ pnpm build
 
 ## Prototype note
 
-This version is an interactive product prototype. Profile updates and demo session state persist in the browser. Production deployment should connect the existing full-stack scaffold to the preferred identity provider and database before inviting alumni.
+This version is an interactive product prototype. Profile updates and demo session state persist in the browser, while admin content and request state persists for the current page session. Production deployment should connect the existing full-stack scaffold to role-based authentication and the database before inviting alumni or Lightship staff.
