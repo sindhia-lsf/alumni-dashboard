@@ -230,15 +230,32 @@ export default function Profile() {
 
         <TabsContent value="metrics">
           <FormCard title="Business metrics" description="Lightship uses these private data points to understand alumni progress and provide relevant support.">
-            <div className="grid gap-5 sm:grid-cols-2">
-              <SelectField label="Annual revenue" value={form.annualRevenue} onChange={v => update("annualRevenue", v)} editing={isEditing} options={["Pre-revenue", "Under $100K", "$100K–$250K", "$250K–$500K", "$500K–$1M", "$1M+"]} />
-              <Field label="Capital raised to date" value={form.fundingRaised} onChange={v => update("fundingRaised", v)} editing={isEditing} />
-              <SelectField label="Fundraising status" value={form.fundraisingStatus} onChange={v => update("fundraisingStatus", v)} editing={isEditing} options={["Not fundraising", "Exploring options", "Preparing to raise", "Actively raising", "Recently closed"]} />
-              <div className="space-y-2 sm:col-span-2">
-                <Label className="text-xs font-bold text-[#34415A]">12-month goals</Label>
-                <Textarea readOnly={!isEditing} value={form.goals} onChange={e => update("goals", e.target.value)} className={textareaClass} />
+            <ProfileSection title="Revenue & valuation" icon={Building2} description="Enter exact or best-estimate figures in US dollars.">
+              <div className="grid gap-5 sm:grid-cols-2">
+                <Field label="Annual revenue 2025" value={form.annualRevenue2025} onChange={v => update("annualRevenue2025", v)} editing={isEditing} placeholder="$0" />
+                <Field label="YTD revenue 2026" value={form.ytdRevenue2026} onChange={v => update("ytdRevenue2026", v)} editing={isEditing} placeholder="$0" />
+                <Field label="Projected revenue 2026" value={form.projectedRevenue2026} onChange={v => update("projectedRevenue2026", v)} editing={isEditing} placeholder="$0" />
+                <Field label="Current valuation" value={form.currentValuation} onChange={v => update("currentValuation", v)} editing={isEditing} placeholder="$0" />
               </div>
-            </div>
+            </ProfileSection>
+
+            <ProfileSection title="Team growth" icon={UserRound} description="Help Lightship understand the jobs created and planned by alumni companies.">
+              <div className="grid gap-5 sm:grid-cols-2">
+                <Field label="Employees hired in 2026" type="number" value={form.employeesHired2026} onChange={v => update("employeesHired2026", v)} editing={isEditing} placeholder="0" />
+                <Field label="Expected employees to hire" type="number" value={form.expectedEmployeesToHire} onChange={v => update("expectedEmployeesToHire", v)} editing={isEditing} placeholder="0" />
+              </div>
+            </ProfileSection>
+
+            <ProfileSection title="Capital & growth plans" icon={CheckCircle2}>
+              <div className="grid gap-5 sm:grid-cols-2">
+                <Field label="Capital raised to date" value={form.fundingRaised} onChange={v => update("fundingRaised", v)} editing={isEditing} />
+                <SelectField label="Fundraising status" value={form.fundraisingStatus} onChange={v => update("fundraisingStatus", v)} editing={isEditing} options={["Not fundraising", "Exploring options", "Preparing to raise", "Actively raising", "Recently closed"]} />
+                <div className="space-y-2 sm:col-span-2">
+                  <Label className="text-xs font-bold text-[#34415A]">12-month goals</Label>
+                  <Textarea readOnly={!isEditing} value={form.goals} onChange={e => update("goals", e.target.value)} className={textareaClass} />
+                </div>
+              </div>
+            </ProfileSection>
           </FormCard>
         </TabsContent>
       </Tabs>

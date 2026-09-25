@@ -96,7 +96,7 @@ export default function Onboarding() {
               <SelectField label="Company stage" value={form.stage} onChange={value => update("stage", value)} options={["Idea / pre-launch", "Pre-revenue", "Early revenue", "Growth", "Established"]} />
               <Field label="Year founded" value={form.foundedYear} onChange={value => update("foundedYear", value)} />
               <SelectField label="Team size" value={form.employeeCount} onChange={value => update("employeeCount", value)} options={["Just me", "2–5", "6–10", "11–25", "26–50", "51+"]} />
-              <SelectField label="Annual revenue" value={form.annualRevenue} onChange={value => update("annualRevenue", value)} options={["Pre-revenue", "Under $100K", "$100K–$250K", "$250K–$500K", "$500K–$1M", "$1M+"]} />
+              <SelectField label="Annual revenue 2025" value={form.annualRevenue2025} onChange={value => update("annualRevenue2025", value)} options={["Pre-revenue", "Under $100K", "$100K–$250K", "$250K–$500K", "$500K–$1M", "$1M+"]} />
             </div>
           )}
 

@@ -74,7 +74,7 @@ export default function Home() {
               <Button onClick={() => setLocation("/profile")} variant="outline" className="h-9 rounded-lg border-[#243B6B]/12 bg-[#F9F8F4] text-xs font-bold text-[#243B6B]">Update details</Button>
             </div>
             <div className="mt-6 grid gap-3 sm:grid-cols-3">
-              <Snapshot icon={CircleDollarSign} label="Annual revenue" value={profile.annualRevenue} />
+              <Snapshot icon={CircleDollarSign} label="2025 revenue" value={profile.annualRevenue2025} />
               <Snapshot icon={UsersRound} label="Team size" value={`${profile.employeeCount} people`} />
               <Snapshot icon={TrendingUp} label="Company stage" value={profile.stage} />
             </div>

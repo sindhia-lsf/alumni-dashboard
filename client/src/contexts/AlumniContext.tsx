@@ -25,7 +25,12 @@ export type AlumniProfile = {
   stage: string;
   foundedYear: string;
   employeeCount: string;
-  annualRevenue: string;
+  annualRevenue2025: string;
+  ytdRevenue2026: string;
+  projectedRevenue2026: string;
+  currentValuation: string;
+  employeesHired2026: string;
+  expectedEmployeesToHire: string;
   fundingRaised: string;
   fundraisingStatus: string;
   cohortCity: string;
@@ -64,7 +69,12 @@ const defaultProfile: AlumniProfile = {
   stage: "Early revenue",
   foundedYear: "2022",
   employeeCount: "6–10",
-  annualRevenue: "$250K–$500K",
+  annualRevenue2025: "$425,000",
+  ytdRevenue2026: "$380,000",
+  projectedRevenue2026: "$750,000",
+  currentValuation: "$3,500,000",
+  employeesHired2026: "4",
+  expectedEmployeesToHire: "6",
   fundingRaised: "$150K",
   fundraisingStatus: "Preparing to raise",
   cohortCity: "Cincinnati",
@@ -90,7 +100,13 @@ function getSavedProfile() {
   if (typeof window === "undefined") return defaultProfile;
   try {
     const saved = window.localStorage.getItem("lightship-alumni-profile");
-    return saved ? { ...defaultProfile, ...JSON.parse(saved) } : defaultProfile;
+    if (!saved) return defaultProfile;
+    const parsed = JSON.parse(saved);
+    return {
+      ...defaultProfile,
+      ...parsed,
+      annualRevenue2025: parsed.annualRevenue2025 ?? parsed.annualRevenue ?? defaultProfile.annualRevenue2025,
+    };
   } catch {
     return defaultProfile;
   }
