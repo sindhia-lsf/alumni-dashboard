@@ -14,6 +14,7 @@ export type AlumniProfile = {
   gender: string;
   raceEthnicity: string;
   lgbtqia: string;
+  householdIncome: string;
   bio: string;
   companyName: string;
   companyUrl: string;
@@ -58,6 +59,7 @@ const defaultProfile: AlumniProfile = {
   gender: "Prefer not to say",
   raceEthnicity: "Prefer not to say",
   lgbtqia: "Prefer not to say",
+  householdIncome: "Prefer not to say",
   bio: "Building practical tools that help neighborhood businesses grow with confidence.",
   companyName: "Northstar Works",
   companyUrl: "northstarworks.co",

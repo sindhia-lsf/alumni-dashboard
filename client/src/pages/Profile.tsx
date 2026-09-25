@@ -171,6 +171,7 @@ export default function Profile() {
                 <SelectField label="Gender" value={form.gender} onChange={v => update("gender", v)} editing={isEditing} options={["Prefer not to say", "Woman", "Man", "Non-binary", "Genderqueer or gender non-conforming", "Self-describe"]} />
                 <SelectField label="Race / ethnicity" value={form.raceEthnicity} onChange={v => update("raceEthnicity", v)} editing={isEditing} options={["Prefer not to say", "American Indian or Alaska Native", "Asian", "Black or African American", "Hispanic or Latino/a/x", "Middle Eastern or North African", "Native Hawaiian or Other Pacific Islander", "White", "Multiracial", "Self-describe"]} />
                 <SelectField label="Do you identify as LGBTQIAP+?" value={form.lgbtqia} onChange={v => update("lgbtqia", v)} editing={isEditing} options={["Prefer not to say", "Yes", "No", "Questioning or unsure", "Self-describe"]} />
+                <SelectField label="Current household income" value={form.householdIncome} onChange={v => update("householdIncome", v)} editing={isEditing} options={["Prefer not to say", "Under $25,000", "$25,000–$49,999", "$50,000–$74,999", "$75,000–$99,999", "$100,000–$149,999", "$150,000–$199,999", "$200,000 or more"]} />
               </div>
             </ProfileSection>
           </FormCard>
