@@ -17,6 +17,8 @@ A responsive alumni community dashboard for Lightship Foundation Bootcamp gradua
 
 The interface uses the supplied navy, red, and soft-yellow palette with warm ivory surfaces. Editorial display typography is paired with compact, legible UI typography for a polished founder-community aesthetic.
 
+All visual assets used by the interface are stored in this repository. The DM Sans and Instrument Serif font files and their licenses are under `client/public/fonts/`. The supplied color reference is preserved under `docs/design/palette-reference.png`. The product UI uses CSS shapes, gradients, and Lucide icon components rather than remote image assets.
+
 ## Development
 
 ```bash
