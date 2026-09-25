@@ -17,6 +17,9 @@ export type AlumniProfile = {
   bio: string;
   companyName: string;
   companyUrl: string;
+  headquartersAddress: string;
+  headquartersCity: string;
+  headquartersState: string;
   title: string;
   industry: string;
   stage: string;
@@ -29,6 +32,11 @@ export type AlumniProfile = {
   cohortYear: string;
   goals: string;
   supportAreas: string;
+  otherCompanies: Array<{
+    id: string;
+    name: string;
+    website: string;
+  }>;
 };
 
 const defaultProfile: AlumniProfile = {
@@ -48,6 +56,9 @@ const defaultProfile: AlumniProfile = {
   bio: "Building practical tools that help neighborhood businesses grow with confidence.",
   companyName: "Northstar Works",
   companyUrl: "northstarworks.co",
+  headquartersAddress: "1238 Main Street",
+  headquartersCity: "Cincinnati",
+  headquartersState: "Ohio",
   title: "Founder & CEO",
   industry: "Technology",
   stage: "Early revenue",
@@ -60,6 +71,9 @@ const defaultProfile: AlumniProfile = {
   cohortYear: "2024",
   goals: "Grow recurring revenue and prepare for a seed round.",
   supportAreas: "Fundraising, customer acquisition, hiring",
+  otherCompanies: [
+    { id: "company-1", name: "Bridgeway Labs", website: "bridgewaylabs.com" },
+  ],
 };
 
 type AlumniContextValue = {

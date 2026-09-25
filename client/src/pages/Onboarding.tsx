@@ -21,7 +21,7 @@ export default function Onboarding() {
   const [step, setStep] = useState(0);
   const [form, setForm] = useState<AlumniProfile>(profile);
 
-  const update = (key: keyof AlumniProfile, value: string) => setForm(current => ({ ...current, [key]: value }));
+  const update = (key: keyof Omit<AlumniProfile, "otherCompanies">, value: string) => setForm(current => ({ ...current, [key]: value }));
 
   const next = () => {
     const valid = step === 0 ? form.firstName && form.lastName && form.email : step === 1 ? form.companyName && form.title && form.industry : form.cohortCity && form.cohortYear;

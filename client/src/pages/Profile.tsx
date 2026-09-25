@@ -14,7 +14,9 @@ import {
   LockKeyhole,
   MapPin,
   Pencil,
+  Plus,
   Save,
+  Trash2,
   UserRound,
   X,
 } from "lucide-react";
@@ -29,9 +31,30 @@ export default function Profile() {
   const [form, setForm] = useState<AlumniProfile>(profile);
   const [isEditing, setIsEditing] = useState(false);
 
-  const update = (key: keyof AlumniProfile, value: string) => {
+  const update = (key: keyof Omit<AlumniProfile, "otherCompanies">, value: string) => {
     if (!isEditing) return;
     setForm(current => ({ ...current, [key]: value }));
+  };
+
+  const addCompany = () => {
+    if (!isEditing) return;
+    setForm(current => ({
+      ...current,
+      otherCompanies: [...current.otherCompanies, { id: `company-${Date.now()}`, name: "", website: "" }],
+    }));
+  };
+
+  const updateCompany = (id: string, key: "name" | "website", value: string) => {
+    if (!isEditing) return;
+    setForm(current => ({
+      ...current,
+      otherCompanies: current.otherCompanies.map(company => company.id === id ? { ...company, [key]: value } : company),
+    }));
+  };
+
+  const removeCompany = (id: string) => {
+    if (!isEditing) return;
+    setForm(current => ({ ...current, otherCompanies: current.otherCompanies.filter(company => company.id !== id) }));
   };
 
   const edit = () => {
@@ -157,19 +180,57 @@ export default function Profile() {
           <FormCard title="Company details" description="Keep this current so peers and partners understand what you’re building.">
             <div className="grid gap-5 sm:grid-cols-2">
               <Field label="Company name" value={form.companyName} onChange={v => update("companyName", v)} editing={isEditing} />
-              <Field label="Current title" value={form.title} onChange={v => update("title", v)} editing={isEditing} />
               <Field label="Website" value={form.companyUrl} onChange={v => update("companyUrl", v)} editing={isEditing} />
               <SelectField label="Industry" value={form.industry} onChange={v => update("industry", v)} editing={isEditing} options={["Technology", "Health & Wellness", "Consumer", "Food & Beverage", "Financial Services", "Professional Services", "Manufacturing", "Other"]} />
+              <Field label="Headquarters address" value={form.headquartersAddress} onChange={v => update("headquartersAddress", v)} editing={isEditing} placeholder="Street address or workspace" />
+              <Field label="Headquarters city" value={form.headquartersCity} onChange={v => update("headquartersCity", v)} editing={isEditing} />
+              <Field label="Headquarters state" value={form.headquartersState} onChange={v => update("headquartersState", v)} editing={isEditing} />
               <Field label="Year founded" value={form.foundedYear} onChange={v => update("foundedYear", v)} editing={isEditing} />
+              <SelectField label="Current number of employees" value={form.employeeCount} onChange={v => update("employeeCount", v)} editing={isEditing} options={["Just me", "2–5", "6–10", "11–25", "26–50", "51+"]} />
               <SelectField label="Company stage" value={form.stage} onChange={v => update("stage", v)} editing={isEditing} options={["Idea / pre-launch", "Pre-revenue", "Early revenue", "Growth", "Established"]} />
             </div>
+
+            <section className="mt-8 border-t border-[#243B6B]/8 pt-8">
+              <div className="flex flex-wrap items-start justify-between gap-4">
+                <div>
+                  <h4 className="text-sm font-bold text-[#2A3954]">Other companies founded</h4>
+                  <p className="mt-1 text-xs leading-5 text-[#858B95]">Add basic details for other companies you founded previously or currently operate.</p>
+                </div>
+                {isEditing && (
+                  <Button type="button" onClick={addCompany} variant="outline" className="h-9 rounded-xl border-[#243B6B]/12 bg-white px-4 text-xs font-bold text-[#243B6B]">
+                    <Plus className="mr-2 h-4 w-4" /> Add company
+                  </Button>
+                )}
+              </div>
+
+              {form.otherCompanies.length > 0 ? (
+                <div className="mt-5 space-y-3">
+                  {form.otherCompanies.map((company, index) => (
+                    <div key={company.id} className="grid gap-4 rounded-2xl border border-[#243B6B]/8 bg-[#FBFAF7] p-4 sm:grid-cols-[1fr_1fr_auto] sm:items-end">
+                      <Field label={`Company ${index + 1} name`} value={company.name} onChange={value => updateCompany(company.id, "name", value)} editing={isEditing} placeholder="Company name" />
+                      <Field label="Website" value={company.website} onChange={value => updateCompany(company.id, "website", value)} editing={isEditing} placeholder="company.com" />
+                      {isEditing && (
+                        <Button type="button" variant="ghost" size="icon" onClick={() => removeCompany(company.id)} className="h-11 w-11 rounded-xl text-[#A0474E] hover:bg-[#DE3038]/10 hover:text-[#DE3038]" aria-label={`Remove ${company.name || `company ${index + 1}`}`}>
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="mt-5 rounded-2xl border border-dashed border-[#243B6B]/15 bg-[#FBFAF7] px-5 py-8 text-center">
+                  <Building2 className="mx-auto h-6 w-6 text-[#A1A6AE]" />
+                  <p className="mt-3 text-sm font-bold text-[#4B566A]">No additional companies added</p>
+                  <p className="mt-1 text-xs text-[#8A9099]">Use Edit profile to add another company.</p>
+                </div>
+              )}
+            </section>
           </FormCard>
         </TabsContent>
 
         <TabsContent value="metrics">
           <FormCard title="Business metrics" description="Lightship uses these private data points to understand alumni progress and provide relevant support.">
             <div className="grid gap-5 sm:grid-cols-2">
-              <SelectField label="Employee count" value={form.employeeCount} onChange={v => update("employeeCount", v)} editing={isEditing} options={["Just me", "2–5", "6–10", "11–25", "26–50", "51+"]} />
               <SelectField label="Annual revenue" value={form.annualRevenue} onChange={v => update("annualRevenue", v)} editing={isEditing} options={["Pre-revenue", "Under $100K", "$100K–$250K", "$250K–$500K", "$500K–$1M", "$1M+"]} />
               <Field label="Capital raised to date" value={form.fundingRaised} onChange={v => update("fundingRaised", v)} editing={isEditing} />
               <SelectField label="Fundraising status" value={form.fundraisingStatus} onChange={v => update("fundraisingStatus", v)} editing={isEditing} options={["Not fundraising", "Exploring options", "Preparing to raise", "Actively raising", "Recently closed"]} />
