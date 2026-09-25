@@ -18,9 +18,11 @@ export type AlumniProfile = {
   bio: string;
   companyName: string;
   companyUrl: string;
+  companyEin: string;
   headquartersAddress: string;
   headquartersCity: string;
   headquartersState: string;
+  headquartersZip: string;
   title: string;
   industry: string;
   stage: string;
@@ -63,9 +65,11 @@ const defaultProfile: AlumniProfile = {
   bio: "Building practical tools that help neighborhood businesses grow with confidence.",
   companyName: "Northstar Works",
   companyUrl: "northstarworks.co",
+  companyEin: "31-1234567",
   headquartersAddress: "1238 Main Street",
   headquartersCity: "Cincinnati",
   headquartersState: "Ohio",
+  headquartersZip: "45202",
   title: "Founder & CEO",
   industry: "Technology",
   stage: "Early revenue",

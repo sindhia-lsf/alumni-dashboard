@@ -183,9 +183,11 @@ export default function Profile() {
               <Field label="Company name" value={form.companyName} onChange={v => update("companyName", v)} editing={isEditing} />
               <Field label="Website" value={form.companyUrl} onChange={v => update("companyUrl", v)} editing={isEditing} />
               <SelectField label="Industry" value={form.industry} onChange={v => update("industry", v)} editing={isEditing} options={["Technology", "Health & Wellness", "Consumer", "Food & Beverage", "Financial Services", "Professional Services", "Manufacturing", "Other"]} />
+              <Field label="Company EIN" value={form.companyEin} onChange={v => update("companyEin", v)} editing={isEditing} placeholder="XX-XXXXXXX" />
               <Field label="Headquarters address" value={form.headquartersAddress} onChange={v => update("headquartersAddress", v)} editing={isEditing} placeholder="Street address or workspace" />
               <Field label="Headquarters city" value={form.headquartersCity} onChange={v => update("headquartersCity", v)} editing={isEditing} />
               <Field label="Headquarters state" value={form.headquartersState} onChange={v => update("headquartersState", v)} editing={isEditing} />
+              <Field label="Headquarters ZIP code" value={form.headquartersZip} onChange={v => update("headquartersZip", v)} editing={isEditing} placeholder="00000" />
               <Field label="Year founded" value={form.foundedYear} onChange={v => update("foundedYear", v)} editing={isEditing} />
               <SelectField label="Current number of employees" value={form.employeeCount} onChange={v => update("employeeCount", v)} editing={isEditing} options={["Just me", "2–5", "6–10", "11–25", "26–50", "51+"]} />
               <SelectField label="Company stage" value={form.stage} onChange={v => update("stage", v)} editing={isEditing} options={["Idea / pre-launch", "Pre-revenue", "Early revenue", "Growth", "Established"]} />
