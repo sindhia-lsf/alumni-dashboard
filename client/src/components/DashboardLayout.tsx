@@ -6,6 +6,7 @@ import { useAlumni } from "@/contexts/AlumniContext";
 import { cn } from "@/lib/utils";
 import {
   Bell,
+  BellRing,
   BookOpenText,
   ChevronRight,
   Home,
@@ -20,6 +21,7 @@ import { useLocation } from "wouter";
 
 const menuItems = [
   { icon: Home, label: "Home", path: "/home" },
+  { icon: BellRing, label: "Updates", path: "/updates" },
   { icon: UserRound, label: "Profile & company", path: "/profile" },
   { icon: BookOpenText, label: "Resources", path: "/resources" },
   { icon: Sparkles, label: "Luminaries", path: "/luminaries" },
@@ -117,7 +119,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </div>
           </div>
           <div className="flex items-center gap-2 sm:gap-3">
-            <button className="relative grid h-10 w-10 place-items-center rounded-xl bg-white text-[#243B6B] shadow-[0_4px_20px_rgba(31,47,82,0.06)] transition-transform active:scale-[0.97]" aria-label="Notifications">
+            <button onClick={() => setLocation("/updates")} className="relative grid h-10 w-10 place-items-center rounded-xl bg-white text-[#243B6B] shadow-[0_4px_20px_rgba(31,47,82,0.06)] transition-transform active:scale-[0.97]" aria-label="Open updates">
               <Bell className="h-[18px] w-[18px]" />
               <span className="absolute right-2.5 top-2.5 h-2 w-2 rounded-full border-2 border-white bg-[#DE3038]" />
             </button>

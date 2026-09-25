@@ -10,6 +10,7 @@ import NotFound from "@/pages/NotFound";
 import Onboarding from "@/pages/Onboarding";
 import Profile from "@/pages/Profile";
 import Resources from "@/pages/Resources";
+import Updates from "@/pages/Updates";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
@@ -24,6 +25,7 @@ function Router() {
       <Route path="/" component={Login} />
       <Route path="/onboarding" component={Onboarding} />
       <Route path="/home"><DashboardPage><Home /></DashboardPage></Route>
+      <Route path="/updates"><DashboardPage><Updates /></DashboardPage></Route>
       <Route path="/profile"><DashboardPage><Profile /></DashboardPage></Route>
       <Route path="/resources"><DashboardPage><Resources /></DashboardPage></Route>
       <Route path="/luminaries"><DashboardPage><Luminaries /></DashboardPage></Route>

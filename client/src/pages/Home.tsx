@@ -62,7 +62,7 @@ export default function Home() {
                   </div>
                   <h3 className="mt-5 text-lg font-bold leading-snug text-[#243B6B]">{item.title}</h3>
                   <p className="mt-2 text-sm leading-6 text-[#6D7481]">{item.body}</p>
-                  <button onClick={() => setLocation(item.id === 1 ? "/contact" : "/resources")} className="mt-5 flex items-center gap-2 text-xs font-bold text-[#DE3038]">View details <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" /></button>
+                  <button onClick={() => setLocation("/updates")} className="mt-5 flex items-center gap-2 text-xs font-bold text-[#DE3038]">View details <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" /></button>
                 </article>
               ))}
             </div>
